@@ -55,6 +55,7 @@ abstract class FlutterFlowTheme {
   late Color background;
   late Color modalBG;
   late Color gradientPurple;
+  late Color checkboxBorder;
 
   String get title1Family => typography.title1Family;
   TextStyle get title1 => typography.title1;
@@ -91,7 +92,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color primaryIcon80 = Color(0xCD0D070D);
   late Color primaryText80 = Color(0x990D070D);
   late Color cardBackground08 = Color(0xFFFFFFFF);
-  late Color cardBackground12 = Color(0xFFFFFFFF);
+  late Color cardBackground12 = Color(0x150D070D);
   late Color primaryText40 = Color(0x650D070D);
   late Color btnText = Color(0xFFFFFFFF);
   late Color customColor3 = Color(0xFFDF3F3F);
@@ -100,6 +101,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color background = Color(0xFF1D2429);
   late Color modalBG = Color(0xFFFFFFFF);
   late Color gradientPurple = Color(0xFFEDE1F8);
+  late Color checkboxBorder = Color(0x290D070D);
 }
 
 abstract class Typography {
@@ -129,35 +131,35 @@ class ThemeTypography extends Typography {
         'Poppins',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 32,
+        fontSize: 40,
       );
   String get title2Family => 'Poppins';
   TextStyle get title2 => GoogleFonts.getFont(
         'Poppins',
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 24,
+        fontWeight: FontWeight.w500,
+        fontSize: 32,
       );
   String get title3Family => 'Poppins';
   TextStyle get title3 => GoogleFonts.getFont(
         'Poppins',
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        fontSize: 24,
       );
   String get subtitle1Family => 'Poppins';
   TextStyle get subtitle1 => GoogleFonts.getFont(
         'Poppins',
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        fontSize: 20,
       );
   String get subtitle2Family => 'Poppins';
   TextStyle get subtitle2 => GoogleFonts.getFont(
         'Poppins',
-        color: theme.secondaryText,
+        color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 16,
+        fontSize: 18,
       );
   String get bodyText1Family => 'Poppins';
   TextStyle get bodyText1 => GoogleFonts.getFont(
@@ -170,7 +172,7 @@ class ThemeTypography extends Typography {
   TextStyle get bodyText2 => GoogleFonts.getFont(
         'Poppins',
         color: theme.secondaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.normal,
         fontSize: 14,
       );
 }
@@ -201,6 +203,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color background = Color(0xFF1D2429);
   late Color modalBG = Color(0xFF221A2C);
   late Color gradientPurple = Color(0xFF221037);
+  late Color checkboxBorder = Color(0x2AFFFFFF);
 }
 
 extension TextStyleHelper on TextStyle {

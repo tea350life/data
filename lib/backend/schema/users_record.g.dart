@@ -19,13 +19,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.name;
-    if (value != null) {
-      result
-        ..add('Name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.email;
     if (value != null) {
       result
@@ -90,10 +83,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'Name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -133,8 +122,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
 
 class _$UsersRecord extends UsersRecord {
   @override
-  final String? name;
-  @override
   final String? email;
   @override
   final String? displayName;
@@ -153,8 +140,7 @@ class _$UsersRecord extends UsersRecord {
       (new UsersRecordBuilder()..update(updates))._build();
 
   _$UsersRecord._(
-      {this.name,
-      this.email,
+      {this.email,
       this.displayName,
       this.photoUrl,
       this.uid,
@@ -174,7 +160,6 @@ class _$UsersRecord extends UsersRecord {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UsersRecord &&
-        name == other.name &&
         email == other.email &&
         displayName == other.displayName &&
         photoUrl == other.photoUrl &&
@@ -190,9 +175,7 @@ class _$UsersRecord extends UsersRecord {
         $jc(
             $jc(
                 $jc(
-                    $jc(
-                        $jc($jc($jc(0, name.hashCode), email.hashCode),
-                            displayName.hashCode),
+                    $jc($jc($jc(0, email.hashCode), displayName.hashCode),
                         photoUrl.hashCode),
                     uid.hashCode),
                 createdTime.hashCode),
@@ -203,7 +186,6 @@ class _$UsersRecord extends UsersRecord {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'UsersRecord')
-          ..add('name', name)
           ..add('email', email)
           ..add('displayName', displayName)
           ..add('photoUrl', photoUrl)
@@ -217,10 +199,6 @@ class _$UsersRecord extends UsersRecord {
 
 class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   _$UsersRecord? _$v;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
 
   String? _email;
   String? get email => _$this._email;
@@ -257,7 +235,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   UsersRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _name = $v.name;
       _email = $v.email;
       _displayName = $v.displayName;
       _photoUrl = $v.photoUrl;
@@ -287,7 +264,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   _$UsersRecord _build() {
     final _$result = _$v ??
         new _$UsersRecord._(
-            name: name,
             email: email,
             displayName: displayName,
             photoUrl: photoUrl,

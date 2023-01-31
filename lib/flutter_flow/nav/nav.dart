@@ -70,28 +70,33 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? NavBarPage() : WelcomeWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : SigninWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : WelcomeWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : SigninWidget(),
           routes: [
             FFRoute(
-              name: 'Welcome',
-              path: 'welcome',
-              builder: (context, params) => WelcomeWidget(),
+              name: 'Signin',
+              path: 'signin',
+              builder: (context, params) => SigninWidget(),
             ),
             FFRoute(
-              name: 'WelcomeName',
-              path: 'welcomeName',
-              builder: (context, params) => WelcomeNameWidget(),
+              name: 'SignUp_Email',
+              path: 'signUpEmail',
+              builder: (context, params) => SignUpEmailWidget(),
             ),
             FFRoute(
-              name: 'WelcomeReminders',
-              path: 'welcomeReminders',
-              builder: (context, params) => WelcomeRemindersWidget(),
+              name: 'SignUp_Name',
+              path: 'signUpName',
+              builder: (context, params) => SignUpNameWidget(),
+            ),
+            FFRoute(
+              name: 'SignUp_Notifications',
+              path: 'signUpNotifications',
+              builder: (context, params) => SignUpNotificationsWidget(),
             ),
             FFRoute(
               name: 'Homepage',
@@ -120,14 +125,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ProfileWidget(),
             ),
             FFRoute(
-              name: 'ProfileNotifications',
-              path: 'profileNotifications',
-              builder: (context, params) => ProfileNotificationsWidget(),
-            ),
-            FFRoute(
               name: 'ProfileName',
               path: 'profileName',
               builder: (context, params) => ProfileNameWidget(),
+            ),
+            FFRoute(
+              name: 'ProfileNotifications',
+              path: 'profileNotifications',
+              builder: (context, params) => ProfileNotificationsWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -287,7 +292,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/welcome';
+            return '/signin';
           }
           return null;
         },

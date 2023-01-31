@@ -9,9 +9,6 @@ part 'users_record.g.dart';
 abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   static Serializer<UsersRecord> get serializer => _$usersRecordSerializer;
 
-  @BuiltValueField(wireName: 'Name')
-  String? get name;
-
   String? get email;
 
   @BuiltValueField(wireName: 'display_name')
@@ -33,7 +30,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
-    ..name = ''
     ..email = ''
     ..displayName = ''
     ..photoUrl = ''
@@ -62,7 +58,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 }
 
 Map<String, dynamic> createUsersRecordData({
-  String? name,
   String? email,
   String? displayName,
   String? photoUrl,
@@ -74,7 +69,6 @@ Map<String, dynamic> createUsersRecordData({
     UsersRecord.serializer,
     UsersRecord(
       (u) => u
-        ..name = name
         ..email = email
         ..displayName = displayName
         ..photoUrl = photoUrl

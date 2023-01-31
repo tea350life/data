@@ -6,6 +6,15 @@ class FFIcons {
   static const String _icomoonFamily = 'Icomoon';
 
   // icomoon
+  static const IconData kapple = IconData(0xe912, fontFamily: _icomoonFamily);
+  static const IconData kgoogle = IconData(0xe913, fontFamily: _icomoonFamily);
+  static const IconData klightMode =
+      IconData(0xe90e, fontFamily: _icomoonFamily);
+  static const IconData kdarkMode =
+      IconData(0xe90f, fontFamily: _icomoonFamily);
+  static const IconData kcheck = IconData(0xe910, fontFamily: _icomoonFamily);
+  static const IconData kappearance =
+      IconData(0xe911, fontFamily: _icomoonFamily);
   static const IconData kedit = IconData(0xe90c, fontFamily: _icomoonFamily);
   static const IconData knotifications =
       IconData(0xe90d, fontFamily: _icomoonFamily);

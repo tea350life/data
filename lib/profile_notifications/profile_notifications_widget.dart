@@ -92,15 +92,7 @@ class _ProfileNotificationsWidgetState
                           ),
                           Text(
                             'Notifications',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            style: FlutterFlowTheme.of(context).subtitle1,
                           ),
                         ],
                       ),

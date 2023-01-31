@@ -1,7 +1,10 @@
+import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
@@ -13,9 +16,36 @@ class DashDailyBoostWidget extends StatefulWidget {
   _DashDailyBoostWidgetState createState() => _DashDailyBoostWidgetState();
 }
 
-class _DashDailyBoostWidgetState extends State<DashDailyBoostWidget> {
+class _DashDailyBoostWidgetState extends State<DashDailyBoostWidget>
+    with TickerProviderStateMixin {
+  final animationsMap = {
+    'columnOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, 24),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+  };
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -40,7 +70,7 @@ class _DashDailyBoostWidgetState extends State<DashDailyBoostWidget> {
                 image: DecorationImage(
                   fit: BoxFit.fitWidth,
                   image: Image.asset(
-                    'assets/images/bg_quote.png',
+                    'assets/images/Home_Daily_boost_01.png',
                   ).image,
                 ),
               ),
@@ -57,15 +87,7 @@ class _DashDailyBoostWidgetState extends State<DashDailyBoostWidget> {
                         children: [
                           Text(
                             'Daily boost',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            style: FlutterFlowTheme.of(context).subtitle1,
                           ),
                           FlutterFlowIconButton(
                             borderColor: Colors.transparent,
@@ -112,7 +134,7 @@ class _DashDailyBoostWidgetState extends State<DashDailyBoostWidget> {
                                   child: Text(
                                     '\"The biggest adventure you can take is to live the life of your dreams.\"',
                                     textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context).title1,
+                                    style: FlutterFlowTheme.of(context).title2,
                                   ),
                                 ),
                                 Padding(
@@ -182,6 +204,10 @@ class _DashDailyBoostWidgetState extends State<DashDailyBoostWidget> {
                                                       .bodyText1
                                                       .override(
                                                         fontFamily: 'Poppins',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
                                                         fontSize: 16,
                                                       ),
                                                 ),
@@ -195,7 +221,8 @@ class _DashDailyBoostWidgetState extends State<DashDailyBoostWidget> {
                                 ),
                               ],
                             ),
-                          ),
+                          ).animateOnPageLoad(
+                              animationsMap['columnOnPageLoadAnimation']!),
                         ),
                       ),
                     ),

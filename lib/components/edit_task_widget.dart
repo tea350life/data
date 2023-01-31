@@ -75,10 +75,7 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
                     child: Text(
                       'Task',
                       textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).title2.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 16,
-                          ),
+                      style: FlutterFlowTheme.of(context).subtitle2,
                     ),
                   ),
                 ],

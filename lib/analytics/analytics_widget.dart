@@ -56,15 +56,7 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                         children: [
                           Text(
                             'Stats',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            style: FlutterFlowTheme.of(context).subtitle1,
                           ),
                           FlutterFlowIconButton(
                             borderColor: Colors.transparent,
@@ -109,13 +101,7 @@ class _AnalyticsWidgetState extends State<AnalyticsWidget> {
                                 child: Text(
                                   'You’re doing great!',
                                   textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .title3
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                  style: FlutterFlowTheme.of(context).title3,
                                 ),
                               ),
                             ],
