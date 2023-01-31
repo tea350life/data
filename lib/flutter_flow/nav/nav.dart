@@ -84,11 +84,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SigninWidget(),
             ),
             FFRoute(
-              name: 'SignUp_Email',
-              path: 'signUpEmail',
-              builder: (context, params) => SignUpEmailWidget(),
-            ),
-            FFRoute(
               name: 'SignUp_Name',
               path: 'signUpName',
               builder: (context, params) => SignUpNameWidget(),

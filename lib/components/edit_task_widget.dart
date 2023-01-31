@@ -1,6 +1,9 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,17 +16,17 @@ class EditTaskWidget extends StatefulWidget {
 }
 
 class _EditTaskWidgetState extends State<EditTaskWidget> {
-  TextEditingController? textController;
+  TextEditingController? taskFieldController;
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    taskFieldController = TextEditingController();
   }
 
   @override
   void dispose() {
-    textController?.dispose();
+    taskFieldController?.dispose();
     super.dispose();
   }
 
@@ -91,7 +94,7 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                       child: TextFormField(
-                        controller: textController,
+                        controller: taskFieldController,
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -145,8 +148,13 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
                       ),
                     ),
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        final tasksCreateData = createTasksRecordData(
+                          checked: false,
+                          text: taskFieldController!.text,
+                          uid: currentUserUid,
+                        );
+                        await TasksRecord.collection.doc().set(tasksCreateData);
                       },
                       text: 'Save',
                       options: FFButtonOptions(

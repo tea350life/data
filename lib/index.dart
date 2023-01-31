@@ -1,6 +1,5 @@
 // Export pages
 export 'signin/signin_widget.dart' show SigninWidget;
-export 'sign_up_email/sign_up_email_widget.dart' show SignUpEmailWidget;
 export 'sign_up_name/sign_up_name_widget.dart' show SignUpNameWidget;
 export 'sign_up_notifications/sign_up_notifications_widget.dart'
     show SignUpNotificationsWidget;

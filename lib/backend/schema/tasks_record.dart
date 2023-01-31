@@ -9,18 +9,20 @@ part 'tasks_record.g.dart';
 abstract class TasksRecord implements Built<TasksRecord, TasksRecordBuilder> {
   static Serializer<TasksRecord> get serializer => _$tasksRecordSerializer;
 
-  @BuiltValueField(wireName: 'task_caption')
-  String? get taskCaption;
+  bool? get checked;
 
-  @BuiltValueField(wireName: 'time_posted')
-  DateTime? get timePosted;
+  String? get text;
+
+  String? get uid;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
-  static void _initializeBuilder(TasksRecordBuilder builder) =>
-      builder..taskCaption = '';
+  static void _initializeBuilder(TasksRecordBuilder builder) => builder
+    ..checked = false
+    ..text = ''
+    ..uid = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('tasks');
@@ -44,15 +46,17 @@ abstract class TasksRecord implements Built<TasksRecord, TasksRecordBuilder> {
 }
 
 Map<String, dynamic> createTasksRecordData({
-  String? taskCaption,
-  DateTime? timePosted,
+  bool? checked,
+  String? text,
+  String? uid,
 }) {
   final firestoreData = serializers.toFirestore(
     TasksRecord.serializer,
     TasksRecord(
       (t) => t
-        ..taskCaption = taskCaption
-        ..timePosted = timePosted,
+        ..checked = checked
+        ..text = text
+        ..uid = uid,
     ),
   );
 

@@ -154,65 +154,6 @@ class _SigninWidgetState extends State<SigninWidget>
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                                 child: InkWell(
                                   onTap: () async {
-                                    context.pushNamed('SignUp_Email');
-                                  },
-                                  child: Container(
-                                    width: 320,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .cardBackground12,
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 12, 16, 12),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 12, 0),
-                                            child: SvgPicture.asset(
-                                              'assets/images/email.svg',
-                                              width: 28,
-                                              height: 28,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 32, 0),
-                                              child: Text(
-                                                'Continue with email',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 16,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                                child: InkWell(
-                                  onTap: () async {
                                     GoRouter.of(context).prepareAuthEvent();
                                     final user =
                                         await signInWithGoogle(context);
@@ -220,7 +161,8 @@ class _SigninWidgetState extends State<SigninWidget>
                                       return;
                                     }
 
-                                    context.goNamedAuth('Homepage', mounted);
+                                    context.pushNamedAuth(
+                                        'SignUp_Name', mounted);
                                   },
                                   child: Container(
                                     width: 320,
@@ -274,71 +216,74 @@ class _SigninWidgetState extends State<SigninWidget>
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                                child: InkWell(
-                                  onTap: () async {
-                                    GoRouter.of(context).prepareAuthEvent();
-                                    final user = await signInWithApple(context);
-                                    if (user == null) {
-                                      return;
-                                    }
+                              if (isiOS == true)
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 16),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      GoRouter.of(context).prepareAuthEvent();
+                                      final user =
+                                          await signInWithApple(context);
+                                      if (user == null) {
+                                        return;
+                                      }
 
-                                    context.goNamedAuth('Homepage', mounted);
-                                  },
-                                  child: Container(
-                                    width: 320,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .cardBackground12,
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 12, 16, 12),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 12, 0),
-                                            child: Icon(
-                                              FFIcons.kapple,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 28,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
+                                      context.goNamedAuth('Homepage', mounted);
+                                    },
+                                    child: Container(
+                                      width: 320,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .cardBackground12,
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16, 12, 16, 12),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 32, 0),
-                                              child: Text(
-                                                'Continue with Apple',
-                                                textAlign: TextAlign.center,
-                                                style:
+                                                  .fromSTEB(0, 0, 12, 0),
+                                              child: Icon(
+                                                FFIcons.kapple,
+                                                color:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
+                                                        .primaryText,
+                                                size: 28,
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 32, 0),
+                                                child: Text(
+                                                  'Continue with Apple',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
                               InkWell(
                                 onTap: () async {
                                   context.pushNamed('SignUp_Name');

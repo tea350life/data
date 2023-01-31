@@ -9,22 +9,10 @@ service cloud.firestore {
     }
 
     match /tasks/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
+      allow create: if request.auth != null;
+      allow read: if request.auth.uid == resource.data.uid;
+      allow write: if request.auth.uid == resource.data.uid;
+      allow delete: if request.auth.uid == resource.data.uid;
     }
-
-    match /tasks/{parent}/notifications/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /{path=**}/notifications/{document} {
-      allow read: if true;
-    }
-
   }
 }

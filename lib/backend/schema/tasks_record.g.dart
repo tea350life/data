@@ -19,19 +19,26 @@ class _$TasksRecordSerializer implements StructuredSerializer<TasksRecord> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.taskCaption;
+    value = object.checked;
     if (value != null) {
       result
-        ..add('task_caption')
+        ..add('checked')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.text;
+    if (value != null) {
+      result
+        ..add('text')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.timePosted;
+    value = object.uid;
     if (value != null) {
       result
-        ..add('time_posted')
+        ..add('uid')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
+            specifiedType: const FullType(String)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -55,13 +62,17 @@ class _$TasksRecordSerializer implements StructuredSerializer<TasksRecord> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'task_caption':
-          result.taskCaption = serializers.deserialize(value,
+        case 'checked':
+          result.checked = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'text':
+          result.text = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'time_posted':
-          result.timePosted = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime?;
+        case 'uid':
+          result.uid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -78,16 +89,18 @@ class _$TasksRecordSerializer implements StructuredSerializer<TasksRecord> {
 
 class _$TasksRecord extends TasksRecord {
   @override
-  final String? taskCaption;
+  final bool? checked;
   @override
-  final DateTime? timePosted;
+  final String? text;
+  @override
+  final String? uid;
   @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$TasksRecord([void Function(TasksRecordBuilder)? updates]) =>
       (new TasksRecordBuilder()..update(updates))._build();
 
-  _$TasksRecord._({this.taskCaption, this.timePosted, this.ffRef}) : super._();
+  _$TasksRecord._({this.checked, this.text, this.uid, this.ffRef}) : super._();
 
   @override
   TasksRecord rebuild(void Function(TasksRecordBuilder) updates) =>
@@ -100,22 +113,25 @@ class _$TasksRecord extends TasksRecord {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is TasksRecord &&
-        taskCaption == other.taskCaption &&
-        timePosted == other.timePosted &&
+        checked == other.checked &&
+        text == other.text &&
+        uid == other.uid &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, taskCaption.hashCode), timePosted.hashCode),
+    return $jf($jc(
+        $jc($jc($jc(0, checked.hashCode), text.hashCode), uid.hashCode),
         ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'TasksRecord')
-          ..add('taskCaption', taskCaption)
-          ..add('timePosted', timePosted)
+          ..add('checked', checked)
+          ..add('text', text)
+          ..add('uid', uid)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -124,13 +140,17 @@ class _$TasksRecord extends TasksRecord {
 class TasksRecordBuilder implements Builder<TasksRecord, TasksRecordBuilder> {
   _$TasksRecord? _$v;
 
-  String? _taskCaption;
-  String? get taskCaption => _$this._taskCaption;
-  set taskCaption(String? taskCaption) => _$this._taskCaption = taskCaption;
+  bool? _checked;
+  bool? get checked => _$this._checked;
+  set checked(bool? checked) => _$this._checked = checked;
 
-  DateTime? _timePosted;
-  DateTime? get timePosted => _$this._timePosted;
-  set timePosted(DateTime? timePosted) => _$this._timePosted = timePosted;
+  String? _text;
+  String? get text => _$this._text;
+  set text(String? text) => _$this._text = text;
+
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -143,8 +163,9 @@ class TasksRecordBuilder implements Builder<TasksRecord, TasksRecordBuilder> {
   TasksRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _taskCaption = $v.taskCaption;
-      _timePosted = $v.timePosted;
+      _checked = $v.checked;
+      _text = $v.text;
+      _uid = $v.uid;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -168,7 +189,7 @@ class TasksRecordBuilder implements Builder<TasksRecord, TasksRecordBuilder> {
   _$TasksRecord _build() {
     final _$result = _$v ??
         new _$TasksRecord._(
-            taskCaption: taskCaption, timePosted: timePosted, ffRef: ffRef);
+            checked: checked, text: text, uid: uid, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
